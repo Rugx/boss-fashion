@@ -60,11 +60,13 @@ class ProfileView extends Component{
             </Text>
             <Icon name='ios-arrow-forward' size={30} color='#ccc' />
           </TouchableOpacity>
+
           <TouchableOpacity style={styles.logoutButton}>
             <Text style={styles.logoutText}>
               Logout
             </Text>
           </TouchableOpacity>
+          
         </ScrollView>
       </View>
     );

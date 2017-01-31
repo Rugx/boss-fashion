@@ -10,8 +10,7 @@ import {
 import Colors from '../styles/colors';
 import { landingStyles, globals } from '../styles';
 
-const BackgroundImage = require('../images/fungirls.jpg');
-const Logo = 'https://s3-us-west-2.amazonaws.com/assembliesapp/logo.png';
+const BackgroundImage = require('../images/asianfashion.jpeg');
 const styles = landingStyles;
 
 class Landing extends Component{
@@ -28,16 +27,13 @@ class Landing extends Component{
         <View style={styles.container}>
           <Image
             style={styles.backgroundImage}
-            source={{ uri: '../images/fungirls.jpg' }}
+            source={(BackgroundImage)}
           />
         </View>
         <View style={globals.flexCenter}>
-          <Image
-            style={styles.logo}
-            source={{ uri: Logo }}
-          />
+
           <Text style={[globals.lightText, globals.h2, globals.mb2]}>
-            SoBo
+            BoBo
           </Text>
           <Text style={[globals.lightText, globals.h4]}>
             Wear your style with CONFIDENCE.
@@ -49,7 +45,7 @@ class Landing extends Component{
         >
           <Icon name='ios-person' size={36} color='white' />
           <Text style={globals.buttonText}>
-            {" "} Go to Dashboard
+            Sign In
           </Text>
         </TouchableOpacity>
       </View>

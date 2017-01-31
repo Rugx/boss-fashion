@@ -41,6 +41,7 @@ export const profileStyles = StyleSheet.create({
   logoutButton: {
     position: 'absolute',
     left: 30,
+
   },
   logoutText: {
     paddingTop: 15,
