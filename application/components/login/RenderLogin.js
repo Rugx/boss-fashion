@@ -5,7 +5,7 @@ import { Header, Button, Spinner } from '../../components/common';
 import LoginForm from './LoginForm';
 
 class RenderLogin extends Component {
-  state = { loggedIn: null };
+  state = { loggedIn: false };
 
   componentWillMount() {
     firebase.initializeApp({
@@ -19,8 +19,10 @@ class RenderLogin extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
+        this.props.childDashboard(this.state.loggedIn)
       } else {
         this.setState({ loggedIn: false });
+        this.props.childDashboard(this.state.loggedIn);
       }
     });
   }

@@ -4,11 +4,13 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 
 import Colors from '../styles/colors';
 import { landingStyles, globals } from '../styles';
+import RenderLogin from './login/RenderLogin';
 
 const BackgroundImage = require('../images/asianfashion.jpeg');
 const styles = landingStyles;
@@ -18,9 +20,12 @@ class Landing extends Component{
     super();
     this.visitDashboard = this.visitDashboard.bind(this);
   }
-  visitDashboard(){
-    this.props.navigator.push({ name: 'Dashboard' })
-  }
+  visitDashboard(loggedIn){
+      if(loggedIn === true) {
+    this.props.navigator.push({ name: 'Dashboard' });
+      }
+}
+
   render(){
     return (
       <View style={styles.container}>
@@ -30,25 +35,32 @@ class Landing extends Component{
             source={(BackgroundImage)}
           />
         </View>
+
+        <ScrollView>
+
         <View style={globals.flexCenter}>
 
           <Text style={[globals.lightText, globals.h2, globals.mb2]}>
             BoBo
           </Text>
+
           <Text style={[globals.lightText, globals.h4]}>
             Wear your style with CONFIDENCE.
           </Text>
+
         </View>
+
+
         <TouchableOpacity
-          style={globals.button}
-          onPress={this.visitDashboard}
+         style={globals.button}
         >
           <Icon name='ios-person' size={36} color='white' />
-          <Text style={globals.buttonText}>
-            Sign In
-          </Text>
+          <RenderLogin childDashboard={this.visitDashboard}/>
         </TouchableOpacity>
+
+        </ScrollView>
       </View>
+
     );
   }
 };

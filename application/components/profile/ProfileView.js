@@ -6,13 +6,17 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-
+import firebase from 'firebase';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 import Colors from '../../styles/colors';
 import { currentUser } from '../../fixtures';
 import { globals, profileStyles } from '../../styles';
+
+import { Button } from '../common';
+
 const styles = profileStyles;
+
 
 class ProfileView extends Component{
   render() {
@@ -61,13 +65,11 @@ class ProfileView extends Component{
             <Icon name='ios-arrow-forward' size={30} color='#ccc' />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoutButton}>
-            <Text style={styles.logoutText}>
-              Logout
-            </Text>
-          </TouchableOpacity>
-          
-        </ScrollView>
+          <Button onPress={() => firebase.auth().signOut()} >
+            Log Out
+          </Button>
+
+          </ScrollView>
       </View>
     );
   }
