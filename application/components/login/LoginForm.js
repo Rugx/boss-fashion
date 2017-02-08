@@ -84,10 +84,7 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
-},
- cardStyle: {
-     justifyContent: 'flex-end'
- }
+}
 
 };
 

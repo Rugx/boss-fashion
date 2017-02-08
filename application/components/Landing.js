@@ -12,7 +12,6 @@ import Colors from '../styles/colors';
 import { landingStyles, globals } from '../styles';
 import RenderLogin from './login/RenderLogin';
 
-const BackgroundImage = require('../images/asianfashion.jpeg');
 const styles = landingStyles;
 
 class Landing extends Component{
@@ -29,12 +28,6 @@ class Landing extends Component{
   render(){
     return (
       <View style={styles.container}>
-        <View style={styles.container}>
-          <Image
-            style={styles.backgroundImage}
-            source={(BackgroundImage)}
-          />
-        </View>
 
         <ScrollView>
 

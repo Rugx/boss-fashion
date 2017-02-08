@@ -21,9 +21,9 @@ import { globals } from '../../styles';
 import { Button } from '../../components/common';
 
 const config = {
-apiKey: 'AIzaSyBdJLyhvkbK2bTI5iCF8mtn8v_sUaEzpaQ',
-authDomain: 'boss-c66f4.firebaseapp.com',
-storageBucket: 'boss-c66f4.appspot.com',
+    apiKey: 'AIzaSyBdJLyhvkbK2bTI5iCF8mtn8v_sUaEzpaQ',
+    authDomain: 'boss-c66f4.firebaseapp.com',
+    storageBucket: 'boss-c66f4.appspot.com',
 };
 
 
@@ -40,53 +40,65 @@ class CameraView extends Component {
     constructor(props) {
         super(props)
 
-        state = {
+        this.state = {
             avatarSource: null
         };
+        console.log('this.state ', this.state );
+        this.uploadImage = this.uploadImage.bind(this);
     }
 
-    uploadImage(uri, mime = 'application/octet-stream') {
-      return new Promise((resolve, reject) => {
-        const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
-          const sessionId = new Date().getTime();
-          let uploadBlob = null;
-          storage = storage || firebase.storage();
-          const imageRef = storage.ref('images').child(`${sessionId}`);
 
-          fs.readFile(uploadUri, 'base64')
-          .then((data) => {
-            return Blob.build(data, { type: `${mime};BASE64` })
-          })
-          .then((blob) => {
-            uploadBlob = blob
-            return imageRef.put(blob, { contentType: mime })
-          })
-          .then(() => {
-            uploadBlob.close()
-            return imageRef.getDownloadURL()
-          })
-          .then((url) => {
-            resolve(url)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+    uploadImage(uri, mime = 'application/octet-stream') {
+        console.log("questo è uploadimage ", uri);
+        return new Promise((resolve, reject) => {
+            const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+            const sessionId = new Date().getTime();
+            let uploadBlob = null;
+            storage = storage || firebase.storage();
+            const imageRef = storage.ref('images').child(`${sessionId}`);
+
+            fs.readFile(uploadUri, 'base64')
+            .then((data) => {
+                return Blob.build(data, { type: `${mime};BASE64` })
+            })
+            .then((blob) => {
+                console.log("blob");
+                uploadBlob = blob
+                return imageRef.put(blob, { contentType: mime })
+            })
+            .then(() => {
+                uploadBlob.close()
+                return imageRef.getDownloadURL()
+            })
+            .then((url) => {
+                resolve(url)
+                console.log("resolve");
+            })
+            .catch((error) => {
+                reject(error)
+            })
+        })
     }
 
 
     _pickImage() {
         console.log("this is the pick image:");
-    this.setState({ uploadURL: '' })
+        this.setState({ uploadURL: '' })
 
-    ImagePicker.launchImageLibrary({}, response  => {
-      uploadImage(response.uri)
-        .then(url => this.setState({ uploadURL: url }))
-        .catch(error => console.log(error))
-    })
-  }
+        ImagePicker.launchImageLibrary({}, response  => {
+            uploadImage(response.uri)
+            .then(url => this.setState({ uploadURL: url }))
+            .catch(error => console.log(error))
+        })
+    }
+
+
+    //dopo image selezionata chiami function fuori GetInternetImages(), dentro for loop che prende le fota da internet attraverso require. require viene chiamato su ogni singolo elemento.
+    //copia venti url di foto e le metti dentro. Poi chiamo require su ognuno
+    //asynchstorage è un local storage
 
     selectShot() {
+
         ImagePicker.showImagePicker((response) => {
             console.log( 'Response = ', response);
 
@@ -111,18 +123,19 @@ class CameraView extends Component {
                 } else {
                     source = { uri: response.uri.replace('file://', '') };
                 }
-                uploadImage(uri);
+
                 this.setState({
                     avatarSource: source
 
                 });
+                this.uploadImage(response.uri);
             }
         });
     }
 
     render(){
-        console.log(ImagePicker);
         let titleConfig = { title: 'Camera', tintColor: 'white' };
+        console.log('this.state in render ', this.state);
         return (
             <View style={globals.flexContainer}>
             <NavigationBar
@@ -134,9 +147,8 @@ class CameraView extends Component {
             <TouchableOpacity onPress={this.selectShot.bind(this)}>
             <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
             { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-
-            <Image style={styles.avatar} source={this.state.avatarSource} />
-}
+                <Image style={styles.avatar} source={this.state.avatarSource} />
+            }
             </View>
             </TouchableOpacity>
 
@@ -165,5 +177,7 @@ const styles = StyleSheet.create({
         height: 150
     }
 });
+
+
 
 export default CameraView;

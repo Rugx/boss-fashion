@@ -6,7 +6,7 @@ import PrivateView from './private/PrivateView';
 import SearchView from './search/SearchView';
 import ProfileView from './profile/ProfileView';
 import CameraView from './camera/CameraView';
-import GroupsView from './groups/GroupsView';
+import PlayView from './play/PlayView';
 
 class Dashboard extends Component{
   constructor(){
@@ -21,7 +21,7 @@ class Dashboard extends Component{
       <Icon.TabBarItemIOS
         title='Profile'
         selected={this.state.selectedTab === 'Profile'}
-        iconName='ios-person'
+        iconName='ios-person' md="md-person"
         onPress={() => this.setState({ selectedTab: 'Profile' })}
       >
         <ProfileView />
@@ -45,21 +45,21 @@ class Dashboard extends Component{
         </Icon.TabBarItemIOS>
 
         <Icon.TabBarItemIOS
-          title='Private'
+          title='Friends'
           selected={this.state.selectedTab === 'Private'}
-          iconName='ios-body'
+          iconName='ios-people'
           onPress={() => this.setState({ selectedTab: 'Private' })}
         >
           <PrivateView />
         </Icon.TabBarItemIOS>
 
         <Icon.TabBarItemIOS
-          title='Public'
+          title='Stream'
           selected={this.state.selectedTab === 'Groups'}
-          iconName='ios-people'
+          iconName='ios-play'
           onPress={() => this.setState({ selectedTab: 'Groups' })}
         >
-          <GroupsView />
+          <PlayView />
         </Icon.TabBarItemIOS>
 
       </TabBarIOS>
