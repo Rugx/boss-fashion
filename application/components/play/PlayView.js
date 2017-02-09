@@ -9,6 +9,8 @@ import NavigationBar from 'react-native-navbar';
 import Colors from '../../styles/colors';
 import { globals } from '../../styles';
 
+import localCards from './Examples';
+
 class PlayView extends Component{
   render(){
     let titleConfig = { title: 'Home', tintColor: 'white' };
@@ -19,10 +21,7 @@ class PlayView extends Component{
           tintColor={Colors.brandPrimary}
         />
         <View style={globals.flexCenter}>
-          <Text style={globals.h2}>
-            This will be a video streaming to get dressed up together!!!
-            WoW
-          </Text>
+          <localCards />
         </View>
       </View>
     )
