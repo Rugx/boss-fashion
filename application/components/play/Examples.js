@@ -83,8 +83,7 @@ componentDidMount() {
       "image": image14
     }];
 
-
-     async storeCards(Cards);
+    async storeCards(Cards);
 
     };
 
@@ -92,7 +91,7 @@ componentDidMount() {
     async getCards() {
         try {
             console.log('this is getcards: ');
-        await AsyncStorage.getItem('cardDatabase').then((response) => {
+        await AsyncStorage.getItem('cardDatabase').then(JSON.parse(response) => {
                this.setState({ Cards: Cards });
            })
        } catch (error) {
@@ -123,7 +122,7 @@ render() {
             </TouchableOpacity>
         </View>
     )
-}
+    }
 }
 
 export default localCards;
