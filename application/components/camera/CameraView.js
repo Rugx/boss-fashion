@@ -160,7 +160,7 @@ class CameraView extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
@@ -175,6 +175,8 @@ const styles = StyleSheet.create({
         borderRadius: 75,
         width: 150,
         height: 150
+
+
     }
 });
 

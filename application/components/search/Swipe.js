@@ -50,8 +50,12 @@ class Swipe extends Component {
   Card(x){
     return (
       <View style={styles.card}>
-        <Image source ={x.image} resizeMode="contain" style ={{width:350, height:350}} />
-        <View style={{width:350, height:70, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+    <Image source ={x.image} resizeMode="contain" style={{ width: 350, height:350 }} />
+        <View style={{width:350,
+            height:70,
+              flexDirection:'row',
+        alignItems:'center',
+         justifyContent:'space-between'}}>
         <View style={{flexDirection:'row', margin:15, marginTop:25,}} >
         <Text style={{fontSize:20, fontWeight:'300', color:'#444'}}>{x.first_name}, </Text>
         <Text style={{fontSize:21, fontWeight:'200', color:'#444'}}>{x.city}</Text>
@@ -115,7 +119,7 @@ this.refs['swiper']._goToNextCard()  }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
 
     backgroundColor: '#f7f7f7',
   },
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius:25
   },
    card: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     alignSelf:'center',
     borderWidth:2,

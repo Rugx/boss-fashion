@@ -27,28 +27,26 @@ class Landing extends Component{
 
   render(){
     return (
-      <View style={styles.container}>
+      <View>
 
         <ScrollView>
 
-        <View style={globals.flexCenter}>
+        <View>
 
-          <Text style={[globals.lightText, globals.h2, globals.mb2]}>
+          <Text>
             BoBo
           </Text>
 
-          <Text style={[globals.lightText, globals.h4]}>
+          <Text>
             Wear your style with CONFIDENCE.
           </Text>
 
         </View>
 
 
-        <TouchableOpacity
-         style={globals.button}
-        >
-          <Icon name='ios-person' size={36} color='white' />
-          <RenderLogin childDashboard={this.visitDashboard}/>
+        <TouchableOpacity>
+
+          <RenderLogin childDashboard={this.visitDashboard} />
         </TouchableOpacity>
 
         </ScrollView>
@@ -56,6 +54,6 @@ class Landing extends Component{
 
     );
   }
-};
+}
 
 export default Landing;

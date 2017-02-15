@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner } from '../../components/common';
 import LoginForm from './LoginForm';
@@ -31,9 +31,12 @@ class RenderLogin extends Component {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Button onPress={() => firebase.auth().signOut()}>
-            Log Out
-          </Button>
+        <View>
+         <Text>
+         Put some cool clothes on
+         Not your sisters
+         </Text>
+         </View>
         );
       case false:
         return <LoginForm />;
@@ -45,7 +48,6 @@ class RenderLogin extends Component {
   render() {
     return (
       <View>
-        <Header headerText="Authentication" />
         {this.renderContent()}
       </View>
     );

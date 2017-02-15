@@ -32,7 +32,7 @@ class localCards extends Component {
         super(props);
 
         this.state = {
-            Cards: ''
+            'Cards': ''
         };
     }
 
@@ -83,27 +83,26 @@ componentDidMount() {
       "image": image14
     }];
 
-    async storeCards(Cards);
+    this.getCards(Cards);
 
     };
-
 
     async getCards() {
         try {
             console.log('this is getcards: ');
-        await AsyncStorage.getItem('cardDatabase').then(JSON.parse(response) => {
-               this.setState({ Cards: Cards });
-           })
-       } catch (error) {
+        await AsyncStorage.getItem('Cards').then((value) => {
+               this.setState({ 'Cards': value });
+        });
+    } catch (error) {
            console.log(error);
        }
    }
 
-   async storeCards() {
+   async storeCards(value) {
        try {
            console.log('this is storecards: ');
-           await AsyncStorage.setItem('cardDatabase', JSON.stringify(Cards));
-           this.setState({ Cards: Cards });
+           await AsyncStorage.setItem('Cards', value);
+               this.setState({ 'Cards': value });
        } catch (error) {
            console.log(error);
        }
@@ -113,7 +112,7 @@ render() {
     return (
 
         <View>
-            <TouchableOpacity onPress={this.getCards.bind(this)}>
+            <TouchableOpacity onPress={this.storeCards.bind(this)}>
                 <View>
                 { this.state.Cards === '' ? <Text>Press here</Text> :
                 <Image source={this.state.Cards} />
